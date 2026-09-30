@@ -19,10 +19,30 @@ const sizeStyles = {
 export type ButtonVariant = keyof typeof variantStyles;
 export type ButtonSize = keyof typeof sizeStyles;
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonStyleOptions = {
     variant?: ButtonVariant;
     size?: ButtonSize;
+    className?: string;
 };
+
+export function buttonStyles({
+                                 variant = "primary",
+                                 size = "default",
+                                 className = "",
+                             }: ButtonStyleOptions = {}) {
+    return [
+        "inline-flex items-center justify-center rounded-full font-medium",
+        "transition-colors duration-200",
+        "focus-visible:outline-2 focus-visible:outline-offset-2",
+        "disabled:pointer-events-none disabled:opacity-50",
+        variantStyles[variant],
+        sizeStyles[size],
+        className,
+    ].join(" ");
+}
+
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+    ButtonStyleOptions;
 
 export function Button({
                            variant = "primary",
@@ -34,15 +54,7 @@ export function Button({
     return (
         <button
             type={type}
-            className={[
-                "inline-flex items-center justify-center rounded-full font-medium",
-                "transition-colors duration-200",
-                "focus-visible:outline-2 focus-visible:outline-offset-2",
-                "disabled:pointer-events-none disabled:opacity-50",
-                variantStyles[variant],
-                sizeStyles[size],
-                className,
-            ].join(" ")}
+            className={buttonStyles({variant, size, className})}
             {...props}
         />
     );
