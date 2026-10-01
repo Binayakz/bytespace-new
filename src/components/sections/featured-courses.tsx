@@ -34,7 +34,7 @@ export function FeaturedCourses() {
         <section
             id="featured-courses"
             aria-label="Featured courses"
-            className="bg-white pb-24"
+            className="bg-white pb-17"
         >
             <Container>
                 <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">

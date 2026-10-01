@@ -3,6 +3,7 @@ import {Hero} from "@/components/sections/hero";
 import {PartnerLogos} from "@/components/sections/partner-logos";
 import {CourseDiscovery} from "@/components/sections/course-discovery";
 import {FeaturedCourses} from "@/components/sections/featured-courses";
+import {LearningPaths} from "@/components/sections/learning-paths";
 
 export default function Home() {
     return (
@@ -30,6 +31,7 @@ export default function Home() {
             <PartnerLogos/>
             <CourseDiscovery/>
             <FeaturedCourses/>
+            <LearningPaths/>
         </main>
     );
 }
