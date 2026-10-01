@@ -1,5 +1,6 @@
 import {Header} from "@/components/layout/header";
 import {Hero} from "@/components/sections/hero";
+import {PartnerLogos} from "@/components/sections/partner-logos";
 
 export default function Home() {
     return (
@@ -23,6 +24,8 @@ export default function Home() {
                 <Header/>
                 <Hero/>
             </div>
+
+            <PartnerLogos/>
         </main>
     );
 }
