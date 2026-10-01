@@ -5,6 +5,7 @@ import {CourseDiscovery} from "@/components/sections/course-discovery";
 import {FeaturedCourses} from "@/components/sections/featured-courses";
 import {LearningPaths} from "@/components/sections/learning-paths";
 import {GrowthFeatures} from "@/components/sections/growth-features";
+import {CreatorCta} from "@/components/sections/creator-cta";
 
 export default function Home() {
     return (
@@ -34,6 +35,7 @@ export default function Home() {
             <FeaturedCourses/>
             <LearningPaths/>
             <GrowthFeatures/>
+            <CreatorCta/>
         </main>
     );
 }
