@@ -4,6 +4,7 @@ import {PartnerLogos} from "@/components/sections/partner-logos";
 import {CourseDiscovery} from "@/components/sections/course-discovery";
 import {FeaturedCourses} from "@/components/sections/featured-courses";
 import {LearningPaths} from "@/components/sections/learning-paths";
+import {GrowthFeatures} from "@/components/sections/growth-features";
 
 export default function Home() {
     return (
@@ -32,6 +33,7 @@ export default function Home() {
             <CourseDiscovery/>
             <FeaturedCourses/>
             <LearningPaths/>
+            <GrowthFeatures/>
         </main>
     );
 }
