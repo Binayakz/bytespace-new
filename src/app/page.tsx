@@ -1,17 +1,28 @@
 import {Header} from "@/components/layout/header";
+import {Hero} from "@/components/sections/hero";
 
 export default function Home() {
     return (
-        <>
-            <Header/>
-
-            <main id="main-content">
-                <section
-                    id="home"
-                    aria-label="Introduction"
-                    className="min-h-[calc(100vh-5rem)] bg-brand-blue"
+        <main id="main-content">
+            <div
+                id="home"
+                className="relative isolate overflow-hidden bg-brand-blue"
+            >
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 z-0"
+                    style={{
+                        backgroundImage:
+                            'url("/images/decorations/hero-grid.svg")',
+                        backgroundPosition: "center top",
+                        backgroundRepeat: "repeat-x",
+                        backgroundSize: "1442px 1026px",
+                    }}
                 />
-            </main>
-        </>
+
+                <Header/>
+                <Hero/>
+            </div>
+        </main>
     );
 }

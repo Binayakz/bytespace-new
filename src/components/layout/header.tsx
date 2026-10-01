@@ -4,13 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import {useState} from "react";
 import {Logo} from "@/components/brand/logo";
-import {buttonStyles} from "@/components/ui/button";
 import {Container} from "./container";
 
 const navigation = [
     {label: "Home", href: "#home"},
     {label: "Courses", href: "#courses"},
-    {label: "About Us", href: "#about"},
+    {label: "Creators", href: "#creators"},
 ];
 
 export function Header() {
@@ -21,26 +20,40 @@ export function Header() {
     }
 
     return (
-        <header className="relative z-50 bg-brand-blue text-white">
-            <Container className="flex h-20 items-center justify-between">
+        <header className="relative z-50 text-white">
+            <Container className="flex h-20 items-center justify-between lg:h-30">
                 <Logo variant="light" priority/>
 
                 <nav
                     aria-label="Primary navigation"
-                    className="hidden items-center gap-9 lg:flex"
+                    className="hidden items-center gap-8 lg:flex"
                 >
                     {navigation.map((item) => (
                         <Link
                             key={item.label}
                             href={item.href}
-                            className="text-[15px] font-medium transition-colors hover:text-brand-lime focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-brand-lime focus-visible:outline-offset-4"
+                            className="text-base transition-colors hover:text-brand-lime focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-brand-lime focus-visible:outline-offset-4"
                         >
                             {item.label}
                         </Link>
                     ))}
                 </nav>
 
-                <div className="hidden items-center gap-6 lg:flex">
+                <div className="hidden items-center gap-7 lg:flex">
+                    <Link
+                        href="/login"
+                        className="text-base transition-colors hover:text-brand-lime focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-brand-lime focus-visible:outline-offset-4"
+                    >
+                        Sign In
+                    </Link>
+
+                    <Link
+                        href="/signup"
+                        className="text-base transition-colors hover:text-brand-lime focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-brand-lime focus-visible:outline-offset-4"
+                    >
+                        Join Us
+                    </Link>
+
                     <Link
                         href="/cart"
                         aria-label="View shopping cart"
@@ -52,23 +65,6 @@ export function Header() {
                             width={16}
                             height={20}
                         />
-                    </Link>
-
-                    <Link
-                        href="/login"
-                        className="text-[15px] font-medium transition-colors hover:text-brand-lime focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-brand-lime focus-visible:outline-offset-4"
-                    >
-                        Log in
-                    </Link>
-
-                    <Link
-                        href="/signup"
-                        className={buttonStyles({
-                            size: "small",
-                            className: "min-w-25",
-                        })}
-                    >
-                        Sign up
                     </Link>
                 </div>
 
@@ -104,40 +100,34 @@ export function Header() {
                     className="absolute inset-x-0 top-full border-t border-white/15 bg-brand-blue shadow-xl lg:hidden"
                 >
                     <Container className="flex flex-col py-6">
-                        <nav
-                            aria-label="Mobile navigation"
-                            className="flex flex-col"
-                        >
+                        <nav aria-label="Mobile navigation" className="flex flex-col">
                             {navigation.map((item) => (
                                 <Link
                                     key={item.label}
                                     href={item.href}
                                     onClick={closeMenu}
-                                    className="border-b border-white/10 py-4 text-base font-medium transition-colors hover:text-brand-lime"
+                                    className="border-b border-white/10 py-4 font-medium transition-colors hover:text-brand-lime"
                                 >
                                     {item.label}
                                 </Link>
                             ))}
                         </nav>
 
-                        <div className="mt-6 flex items-center gap-3">
+                        <div className="mt-6 flex gap-3">
                             <Link
                                 href="/login"
                                 onClick={closeMenu}
-                                className="inline-flex h-11 flex-1 items-center justify-center rounded-full border border-white/30 font-medium transition-colors hover:bg-white/10"
+                                className="inline-flex h-11 flex-1 items-center justify-center rounded-full border border-white/30 font-medium"
                             >
-                                Log in
+                                Sign In
                             </Link>
 
                             <Link
                                 href="/signup"
                                 onClick={closeMenu}
-                                className={buttonStyles({
-                                    size: "small",
-                                    className: "flex-1",
-                                })}
+                                className="inline-flex h-11 flex-1 items-center justify-center rounded-full bg-brand-lime font-medium text-heading"
                             >
-                                Sign up
+                                Join Us
                             </Link>
                         </div>
                     </Container>
