@@ -1,35 +1,18 @@
 import {CourseCard} from "@/components/cards/course-card";
 import {Container} from "@/components/layout/container";
 
-const courses = [
-    {
-        title: "Learn Figma from Basic",
-        image: "/images/courses/learn-figma-from-basic.jpg",
-    },
-    {
-        title: "Build Digital Asset",
-        image: "/images/courses/build-digital-asset.jpg",
-        showStats: false,
-    },
-    {
-        title: "the Power of Big Data",
-        image: "/images/courses/power-of-big-data.jpg",
-    },
-    {
-        title: "Balancing Productivity and Work",
-        image: "/images/courses/balancing-productivity.jpg",
-    },
-    {
-        title: "Mastering Money Management",
-        image: "/images/courses/mastering-money-management.jpg",
-    },
-    {
-        title: "From Idea to Startup Success",
-        image: "/images/courses/from-idea-to-startup-success.jpg",
-    },
-];
+export type Course = {
+    title: string;
+    image: string;
+    categories: string[];
+    showStats?: boolean;
+};
 
-export function FeaturedCourses() {
+type FeaturedCoursesProps = {
+    courses: Course[];
+};
+
+export function FeaturedCourses({courses}: FeaturedCoursesProps) {
     return (
         <section
             id="featured-courses"
@@ -38,9 +21,20 @@ export function FeaturedCourses() {
         >
             <Container>
                 <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-                    {courses.map((course) => (
-                        <CourseCard key={course.title} {...course}/>
-                    ))}
+                    {courses.length > 0 ? (
+                        courses.map((course) => (
+                            <CourseCard
+                                key={course.title}
+                                title={course.title}
+                                image={course.image}
+                                showStats={course.showStats}
+                            />
+                        ))
+                    ) : (
+                        <p className="col-span-full py-12 text-center text-lg text-muted">
+                            No courses match your search yet.
+                        </p>
+                    )}
                 </div>
             </Container>
         </section>

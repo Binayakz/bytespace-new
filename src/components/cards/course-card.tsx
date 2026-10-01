@@ -30,14 +30,14 @@ export function CourseCard({
                 />
 
                 {showStats && (
-                    <div className="absolute right-3 bottom-4 left-3 flex items-center justify-between gap-2 text-sm text-body">
-                        <span className="whitespace-nowrap rounded-full bg-white/75 px-3 py-1.5 backdrop-blur-sm">
+                    <div className="absolute right-2 bottom-3 left-2 flex items-center justify-between gap-1 text-[10px] text-body sm:right-3 sm:bottom-4 sm:left-3 sm:gap-2 sm:text-sm">
+                        <span className="whitespace-nowrap rounded-full bg-white/75 px-2 py-1.5 backdrop-blur-sm sm:px-3">
                             17 Lessons
                         </span>
-                        <span className="whitespace-nowrap rounded-full bg-white/75 px-3 py-1.5 backdrop-blur-sm">
+                        <span className="whitespace-nowrap rounded-full bg-white/75 px-2 py-1.5 backdrop-blur-sm sm:px-3">
                             2 hours 16 mins
                         </span>
-                        <span className="whitespace-nowrap rounded-full bg-white/75 px-3 py-1.5 backdrop-blur-sm">
+                        <span className="whitespace-nowrap rounded-full bg-white/75 px-2 py-1.5 backdrop-blur-sm sm:px-3">
                             59 Comments
                         </span>
                     </div>

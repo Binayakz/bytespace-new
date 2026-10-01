@@ -1,6 +1,3 @@
-"use client";
-
-import {useState} from "react";
 import {Container} from "@/components/layout/container";
 
 const categoryRows = [
@@ -25,8 +22,29 @@ const categoryRows = [
     ["Productivity", "Web Development", "Data Science", "Cooking"],
 ];
 
-export function CourseDiscovery() {
-    const [activeCategory, setActiveCategory] = useState("Featured");
+const additionalCategories = [
+    "Artificial Intelligence",
+    "Writing",
+    "Languages",
+    "Lifestyle",
+];
+
+type CourseDiscoveryProps = {
+    activeCategory: string;
+    showMore: boolean;
+    onCategoryChange: (category: string) => void;
+    onToggleMore: () => void;
+};
+
+export function CourseDiscovery({
+                                    activeCategory,
+                                    showMore,
+                                    onCategoryChange,
+                                    onToggleMore,
+                                }: CourseDiscoveryProps) {
+    const visibleRows = showMore
+        ? [...categoryRows, additionalCategories]
+        : categoryRows;
 
     return (
         <section
@@ -53,7 +71,7 @@ export function CourseDiscovery() {
                     aria-label="Course categories"
                     className="mx-auto mt-11 flex max-w-270 flex-col items-center gap-5"
                 >
-                    {categoryRows.map((row, rowIndex) => (
+                    {visibleRows.map((row, rowIndex) => (
                         <div
                             key={row[0]}
                             className="flex flex-wrap justify-center gap-4"
@@ -66,7 +84,7 @@ export function CourseDiscovery() {
                                         key={category}
                                         type="button"
                                         aria-pressed={isActive}
-                                        onClick={() => setActiveCategory(category)}
+                                        onClick={() => onCategoryChange(category)}
                                         className={`h-11 rounded-full px-4 text-base transition-colors focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-2 ${
                                             isActive
                                                 ? "bg-brand-lime text-heading"
@@ -78,12 +96,14 @@ export function CourseDiscovery() {
                                 );
                             })}
 
-                            {rowIndex === categoryRows.length - 1 && (
+                            {rowIndex === visibleRows.length - 1 && (
                                 <button
                                     type="button"
+                                    aria-expanded={showMore}
+                                    onClick={onToggleMore}
                                     className="h-11 px-1 text-base text-brand-blue transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-2"
                                 >
-                                    + More
+                                    {showMore ? "− Less" : "+ More"}
                                 </button>
                             )}
                         </div>

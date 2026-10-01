@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import type {CSSProperties} from "react";
+import {type CSSProperties, type FormEvent, useState} from "react";
 import {Container} from "@/components/layout/container";
 
 const studentAvatars = [
@@ -9,12 +11,17 @@ const studentAvatars = [
     "/images/avatars/student-avatar-04.png",
 ];
 
-function limeMaskStyle(image: string): CSSProperties {
-    return {
-        background:
-            "linear-gradient(145deg, #efff4a 0%, #d4fb20 52%, #c4ef00 100%)",
-        WebkitMaskImage: `url("${image}")`,
-        maskImage: `url("${image}")`,
+type LimeDecorationProps = {
+    src: string;
+    className: string;
+    mirrored?: boolean;
+};
+
+function LimeDecoration({src, className, mirrored = false}: LimeDecorationProps) {
+    const maskStyle: CSSProperties = {
+        backgroundColor: "#d4fb20",
+        WebkitMaskImage: `url("${src}")`,
+        maskImage: `url("${src}")`,
         WebkitMaskPosition: "center",
         maskPosition: "center",
         WebkitMaskRepeat: "no-repeat",
@@ -22,9 +29,48 @@ function limeMaskStyle(image: string): CSSProperties {
         WebkitMaskSize: "contain",
         maskSize: "contain",
     };
+
+    return (
+        <div className={className}>
+            <span
+                className={`absolute inset-0 ${mirrored ? "scale-x-[-1]" : ""}`}
+                style={maskStyle}
+            />
+            <Image
+                src={src}
+                alt=""
+                width={2500}
+                height={2500}
+                className={`absolute inset-0 size-full opacity-22 mix-blend-multiply ${
+                    mirrored ? "scale-x-[-1]" : ""
+                }`}
+            />
+            <Image
+                src={src}
+                alt=""
+                width={2500}
+                height={2500}
+                className={`absolute inset-0 size-full opacity-65 mix-blend-screen ${
+                    mirrored ? "scale-x-[-1]" : ""
+                }`}
+            />
+        </div>
+    );
 }
 
 export function Hero() {
+    const [query, setQuery] = useState("");
+
+    function handleSearch(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        window.dispatchEvent(
+            new CustomEvent("bytespace:course-search", {detail: query.trim()}),
+        );
+        document
+            .getElementById("featured-courses")
+            ?.scrollIntoView({behavior: "smooth", block: "start"});
+    }
+
     return (
         <section
             aria-labelledby="hero-heading"
@@ -33,19 +79,20 @@ export function Hero() {
             <Container className="relative z-20 flex flex-col items-center pt-12 text-center lg:pt-12">
                 <h1
                     id="hero-heading"
-                    className="max-w-225 font-heading text-4xl leading-[1.14] font-semibold tracking-[-0.035em] sm:text-5xl lg:text-[72px]"
+                    className="w-full max-w-225 font-heading text-4xl leading-[1.14] font-semibold tracking-[-0.035em] sm:text-5xl lg:text-[72px]"
                 >
                     Get Access to Hundreds
                     <br className="hidden sm:block"/> Courses Available
                 </h1>
 
-                <p className="mt-10 max-w-190 text-base leading-7 text-white/90 lg:text-lg">
+                <p className="mt-8 w-full max-w-190 text-base leading-7 text-white/90 sm:mt-10 lg:text-lg">
                     Unlock your creativity, gain valuable knowledge, and grow your
                     business with our wide range of courses.
                 </p>
 
                 <form
-                    action="/courses"
+                    role="search"
+                    onSubmit={handleSearch}
                     className="mt-8 flex w-full max-w-145.5 flex-col gap-4 sm:flex-row"
                 >
                     <label className="flex h-14 flex-1 items-center gap-3 rounded-full bg-white px-6">
@@ -62,6 +109,8 @@ export function Hero() {
                             type="search"
                             name="query"
                             placeholder="Course, topic, creator"
+                            value={query}
+                            onChange={(event) => setQuery(event.target.value)}
                             className="min-w-0 flex-1 bg-transparent text-base text-body outline-none"
                         />
                     </label>
@@ -80,18 +129,15 @@ export function Hero() {
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 hidden lg:block"
             >
-                <div
+                <LimeDecoration
+                    src="/images/decorations/squiggle-black-large.png"
                     className="absolute top-29 -left-22 size-90 rotate-[-18deg]"
-                    style={limeMaskStyle(
-                        "/images/decorations/squiggle-black-large.png",
-                    )}
                 />
 
-                <div
-                    className="absolute top-33 -right-31 size-94 rotate-[-24deg]"
-                    style={limeMaskStyle(
-                        "/images/decorations/cylinder-black-large.png",
-                    )}
+                <LimeDecoration
+                    src="/images/decorations/cylinder-black-large.png"
+                    mirrored
+                    className="absolute top-33 -right-28 size-94 rotate-[-12deg]"
                 />
             </div>
 

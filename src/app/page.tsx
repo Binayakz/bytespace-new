@@ -1,8 +1,7 @@
 import {Header} from "@/components/layout/header";
 import {Hero} from "@/components/sections/hero";
 import {PartnerLogos} from "@/components/sections/partner-logos";
-import {CourseDiscovery} from "@/components/sections/course-discovery";
-import {FeaturedCourses} from "@/components/sections/featured-courses";
+import {CourseBrowser} from "@/components/sections/course-browser";
 import {LearningPaths} from "@/components/sections/learning-paths";
 import {GrowthFeatures} from "@/components/sections/growth-features";
 import {CreatorCta} from "@/components/sections/creator-cta";
@@ -33,8 +32,7 @@ export default function Home() {
             </div>
 
             <PartnerLogos/>
-            <CourseDiscovery/>
-            <FeaturedCourses/>
+            <CourseBrowser/>
             <LearningPaths/>
             <GrowthFeatures/>
             <CreatorCta/>

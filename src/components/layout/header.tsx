@@ -8,7 +8,7 @@ import {Container} from "./container";
 
 const navigation = [
     {label: "Home", href: "#home"},
-    {label: "Courses", href: "#courses"},
+    {label: "Courses", href: "#featured-courses"},
     {label: "Creators", href: "#creators"},
 ];
 
@@ -40,24 +40,30 @@ export function Header() {
                 </nav>
 
                 <div className="hidden items-center gap-7 lg:flex">
-                    <Link
-                        href="/login"
-                        className="text-base transition-colors hover:text-brand-lime focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-brand-lime focus-visible:outline-offset-4"
+                    <button
+                        type="button"
+                        disabled
+                        title="Sign in is available as a bonus feature"
+                        className="cursor-not-allowed text-base"
                     >
                         Sign In
-                    </Link>
+                    </button>
 
-                    <Link
-                        href="/signup"
-                        className="text-base transition-colors hover:text-brand-lime focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-brand-lime focus-visible:outline-offset-4"
+                    <button
+                        type="button"
+                        disabled
+                        title="Registration is available as a bonus feature"
+                        className="cursor-not-allowed text-base"
                     >
                         Join Us
-                    </Link>
+                    </button>
 
-                    <Link
-                        href="/cart"
+                    <button
+                        type="button"
+                        disabled
                         aria-label="View shopping cart"
-                        className="inline-flex size-11 items-center justify-center rounded-full transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-brand-lime focus-visible:outline-offset-2"
+                        title="Shopping cart is available as a bonus feature"
+                        className="inline-flex size-11 cursor-not-allowed items-center justify-center rounded-full"
                     >
                         <Image
                             src="/icons/shopping-bag-light.svg"
@@ -65,7 +71,7 @@ export function Header() {
                             width={16}
                             height={20}
                         />
-                    </Link>
+                    </button>
                 </div>
 
                 <button
@@ -114,21 +120,21 @@ export function Header() {
                         </nav>
 
                         <div className="mt-6 flex gap-3">
-                            <Link
-                                href="/login"
-                                onClick={closeMenu}
-                                className="inline-flex h-11 flex-1 items-center justify-center rounded-full border border-white/30 font-medium"
+                            <button
+                                type="button"
+                                disabled
+                                className="inline-flex h-11 flex-1 cursor-not-allowed items-center justify-center rounded-full border border-white/30 font-medium"
                             >
                                 Sign In
-                            </Link>
+                            </button>
 
-                            <Link
-                                href="/signup"
-                                onClick={closeMenu}
-                                className="inline-flex h-11 flex-1 items-center justify-center rounded-full bg-brand-lime font-medium text-heading"
+                            <button
+                                type="button"
+                                disabled
+                                className="inline-flex h-11 flex-1 cursor-not-allowed items-center justify-center rounded-full bg-brand-lime font-medium text-heading"
                             >
                                 Join Us
-                            </Link>
+                            </button>
                         </div>
                     </Container>
                 </div>
