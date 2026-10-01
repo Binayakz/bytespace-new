@@ -13,6 +13,7 @@ const learningPaths = [
 export function LearningPaths() {
     return (
         <section
+            id="featured-categories"
             aria-labelledby="learning-paths-heading"
             className="bg-white pb-30"
         >

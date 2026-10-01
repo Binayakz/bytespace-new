@@ -6,6 +6,8 @@ import {FeaturedCourses} from "@/components/sections/featured-courses";
 import {LearningPaths} from "@/components/sections/learning-paths";
 import {GrowthFeatures} from "@/components/sections/growth-features";
 import {CreatorCta} from "@/components/sections/creator-cta";
+import {Testimonials} from "@/components/sections/testimonials";
+import {Footer} from "@/components/layout/footer";
 
 export default function Home() {
     return (
@@ -36,6 +38,8 @@ export default function Home() {
             <LearningPaths/>
             <GrowthFeatures/>
             <CreatorCta/>
+            <Testimonials/>
+            <Footer/>
         </main>
     );
 }
